@@ -44,22 +44,48 @@ window.BLOGGER_MASTER_CONFIG = {
 
   widgets: {
 
-    /*
-     * Widget HTML10
-     * Contoh: banner / QR
-     */
+  HTML10: {
+    enabled: true,
+    title: "MASTER",
+    content: `
+      <div style="text-align:center;">
+        <img
+          src="URL-GAMBAR-KAMU"
+          style="max-width:100%;height:auto;"
+        />
+      </div>
+    `
+  },
 
-    HTML10: {
-      enabled: true,
+  HTML3: {
+    enabled: true,
+    title: "LINK ALTERNATIF SLOT 10K",
+    content: `
+      <div style="text-align:center;">
+        <a href="https://contoh-domain.com"
+           target="_blank"
+           rel="nofollow noopener">
+          LINK ALTERNATIF
+        </a>
+      </div>
+    `
+  },
 
-      title: "MASTER",
+  HTML6: {
+    enabled: true,
+    title: "FACEBOOK",
+    content: `
+      <div style="text-align:center;">
+        <a href="https://facebook.com/"
+           target="_blank"
+           rel="nofollow noopener">
+          Facebook
+        </a>
+      </div>
+    `
+  }
 
-      content: `
-        <div style="text-align:center;">
-          <a title="MASTERMPO" href="https://qoolink.co/rajavigorgames" target="blank"><img loading="lazy" src="https://i.postimg.cc/gJ6329tP/slot-qris.png" alt="online" width="100%" height="auto"></a>
-        </div>
-      `
-    },
+}
 
 
     /*

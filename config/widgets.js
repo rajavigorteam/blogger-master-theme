@@ -44,42 +44,12 @@ window.BLOGGER_MASTER_WIDGETS = {
       <div class="wp-block-group__inner-container">
 
         <h2>Blogroll</h2>
-
-        <ul class="wp-block-categories-list wp-block-categories">
-
-          <li>
-            <a href="https://jaga.link/rajavigor"
-               target="_blank"
-               rel="nofollow noopener">
-              RAJAVIGOR
-            </a>
-          </li>
-
-          <li>
-            <a href="https://jaga.link/kantslot"
-               target="_blank"
-               rel="nofollow noopener">
-              KANTSLOT
-            </a>
-          </li>
-
-          <li>
-            <a href="https://rumaslapa.com/"
-               target="_blank"
-               rel="nofollow noopener">
-              SLOTKAMBO
-            </a>
-          </li>
-
-          <li>
-            <a href="https://jaga.link/romawibet"
-               target="_blank"
-               rel="nofollow noopener">
-              ROMAWIBET
-            </a>
-          </li>
-
-        </ul>
+<ul class="wp-block-categories-list wp-block-categories">
+<li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://jaga.link/rajavigor">RAJAVIGOR</a></li>
+<li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://jaga.link/kantinslot">KANTINSLOT</a></li>
+<li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://jaga.link/slotkamboja">SLOTKAMBOJA</a></li>
+<li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://jaga.link/romawibet">ROMAWIBET</a></li>
+</ul>
 
       </div>
     `

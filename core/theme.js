@@ -29,33 +29,120 @@
     });
   }
 
-  function removeTestMenu() {
+  /*
+   * MENU BLOGGER ASLI
+   * Tidak disentuh.
+   */
+  function keepOriginalMenu() {
     const testMenu = document.querySelector(".bm-master-nav");
 
     if (testMenu) {
       testMenu.remove();
-      console.log("Blogger Master Theme: test menu removed.");
     }
   }
 
-  function init() {
-    removeTestMenu();
-    applyDesign();
+  /*
+   * SIDEBAR MASTER
+   * Hanya menambahkan wadah baru.
+   * Widget lama belum dihapus.
+   */
+  function renderMasterSidebar() {
+    const sidebar = document.querySelector("#sidebar1");
 
-    /*
-     * MENU BLOGGER ASLI TIDAK DISENTUH.
-     *
-     * Menu lama seperti:
-     * SITUS SLOT 10K
-     * DEPOSIT
-     * WITHDRAW
-     * INFORMASI
-     * ABOUT US
-     * LIVECHAT
-     * DAFTAR BLOG INDEX
-     *
-     * tetap menggunakan sistem LinkList Blogger.
-     */
+    if (!sidebar) {
+      console.warn("Sidebar #sidebar1 tidak ditemukan.");
+      return;
+    }
+
+    if (sidebar.querySelector("[data-blogger-master-sidebar]")) {
+      return;
+    }
+
+    const wrapper = document.createElement("div");
+    wrapper.setAttribute("data-blogger-master-sidebar", "true");
+    wrapper.className = "bm-master-sidebar";
+
+    const title = document.createElement("h2");
+    title.className = "bm-master-sidebar-title";
+    title.textContent = "Master Sidebar";
+
+    wrapper.appendChild(title);
+
+    const widgets =
+      C.sidebar && Array.isArray(C.sidebar.widgets)
+        ? C.sidebar.widgets
+        : [];
+
+    widgets.forEach(function (widget) {
+      const box = document.createElement("div");
+      box.className = "bm-master-widget";
+
+      const heading = document.createElement("h3");
+      heading.textContent = widget.title || "Widget";
+
+      box.appendChild(heading);
+
+      const content = document.createElement("div");
+      content.className = "bm-master-widget-content";
+
+      if (widget.type === "search") {
+        const form = document.createElement("form");
+        form.className = "bm-master-search";
+
+        const input = document.createElement("input");
+        input.type = "search";
+        input.placeholder = "Search...";
+
+        const button = document.createElement("button");
+        button.type = "submit";
+        button.textContent = "Search";
+
+        form.appendChild(input);
+        form.appendChild(button);
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const q = input.value.trim();
+
+          if (q) {
+            window.location.href =
+              "/search?q=" + encodeURIComponent(q);
+          }
+        });
+
+        content.appendChild(form);
+      }
+
+      else if (widget.type === "html") {
+        content.innerHTML = widget.content || "";
+      }
+
+      else {
+        const note = document.createElement("div");
+        note.textContent =
+          "Widget " +
+          (widget.type || "unknown") +
+          " siap dikontrol dari GitHub.";
+
+        content.appendChild(note);
+      }
+
+      box.appendChild(content);
+      wrapper.appendChild(box);
+    });
+
+    sidebar.insertBefore(wrapper, sidebar.firstChild);
+
+    console.log(
+      "Blogger Master Theme: Master Sidebar berhasil dimuat."
+    );
+  }
+
+  function init() {
+    applyDesign();
+    keepOriginalMenu();
+    renderMasterSidebar();
   }
 
   if (document.readyState === "loading") {

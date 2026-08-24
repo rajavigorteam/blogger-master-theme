@@ -1,5 +1,5 @@
 window.BLOGGER_MASTER_CONFIG = {
-  version: "1.0.0",
+  version: "1.1.0",
 
   site: {
     name: "My Blog",
@@ -7,31 +7,72 @@ window.BLOGGER_MASTER_CONFIG = {
   },
 
   design: {
-    primaryColor: "#2563eb",
-    textColor: "#172033",
-    backgroundColor: "#f5f7fb",
+    primaryColor: "#111111",
+    textColor: "#222222",
+    backgroundColor: "#f5f5f5",
     cardColor: "#ffffff",
-    borderColor: "#e6eaf0",
-    radius: "16px",
+    borderColor: "#e5e5e5",
+    radius: "8px",
     maxWidth: "1280px"
   },
 
-  menu: [
-    { title: "Home", url: "/" },
-    { title: "Technology", url: "/search/label/Technology" },
-    { title: "Tutorial", url: "/search/label/Tutorial" },
-    { title: "News", url: "/search/label/News" },
-    { title: "About", url: "/p/about.html" }
-  ],
+  /*
+   * MENU TIDAK DIGUNAKAN OLEH MASTER THEME.
+   * Menu lama Blogger tetap dipakai.
+   */
+  menu: [],
+
+  /*
+   * =====================================================
+   * SIDEBAR GLOBAL
+   * =====================================================
+   *
+   * Urutan widget di bawah ini = urutan tampil di sidebar.
+   */
 
   sidebar: {
     enabled: true,
+
     widgets: [
-      { type: "search", title: "Search" },
-      { type: "popular", title: "Popular Posts", limit: 5 },
-      { type: "labels", title: "Categories" },
-      { type: "recent", title: "Recent Posts", limit: 5 },
-      { type: "social", title: "Follow Us" }
+
+      {
+        type: "search",
+        title: "SEARCH"
+      },
+
+      {
+        type: "html",
+        title: "PROMO",
+        content: `
+          <div style="text-align:center;">
+            <a href="#" target="_blank">
+              <img
+                src="https://via.placeholder.com/300x250"
+                style="width:100%;height:auto;border-radius:8px;"
+              />
+            </a>
+          </div>
+        `
+      },
+
+      {
+        type: "html",
+        title: "INFORMASI",
+        content: `
+          <ul>
+            <li><a href="/p/about.html">About Us</a></li>
+            <li><a href="/p/contact.html">Contact</a></li>
+            <li><a href="/p/privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        `
+      },
+
+      {
+        type: "recent",
+        title: "RECENT POSTS",
+        limit: 5
+      }
+
     ]
   },
 

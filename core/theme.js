@@ -1,268 +1,350 @@
 (function () {
+
   "use strict";
 
-  const C = window.BLOGGER_MASTER_CONFIG;
+  var CONFIG = window.BLOGGER_MASTER_CONFIG;
 
-  if (!C) {
-    console.warn("BLOGGER MASTER THEME: config.js tidak ditemukan.");
+  if (!CONFIG) {
+    console.warn(
+      "BLOGGER MASTER THEME: config.js tidak ditemukan."
+    );
     return;
   }
 
-  function applyDesign() {
-    const d = C.design || {};
-    const root = document.documentElement;
-
-    const vars = {
-      "--bm-primary": d.primaryColor,
-      "--bm-text": d.textColor,
-      "--bm-bg": d.backgroundColor,
-      "--bm-card": d.cardColor,
-      "--bm-border": d.borderColor,
-      "--bm-radius": d.radius,
-      "--bm-max": d.maxWidth
-    };
-
-    Object.keys(vars).forEach(function (key) {
-      if (vars[key]) {
-        root.style.setProperty(key, vars[key]);
-      }
-    });
-  }
-
-  function findSidebar() {
-    return document.querySelector(".sidebar.common-widget");
-  }
-
-  function createTitle(title) {
-    const h3 = document.createElement("h3");
-    h3.className = "bm-master-widget-title";
-    h3.textContent = title || "Widget";
-    return h3;
-  }
-
-  function createWidget(widget) {
-    const box = document.createElement("div");
-
-    box.className = "bm-master-widget";
-
-    box.appendChild(createTitle(widget.title));
-
-    const content = document.createElement("div");
-    content.className = "bm-master-widget-content";
-
-    /*
-     * SEARCH
-     */
-    if (widget.type === "search") {
-      const form = document.createElement("form");
-
-      form.className = "bm-master-search";
-
-      const input = document.createElement("input");
-      input.type = "search";
-      input.placeholder = "Search...";
-
-      const button = document.createElement("button");
-      button.type = "submit";
-      button.textContent = "Search";
-
-      form.appendChild(input);
-      form.appendChild(button);
-
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const q = input.value.trim();
-
-        if (q) {
-          window.location.href =
-            "/search?q=" + encodeURIComponent(q);
-        }
-      });
-
-      content.appendChild(form);
-    }
-
-    /*
-     * HTML
-     */
-    else if (widget.type === "html") {
-      content.innerHTML = widget.content || "";
-    }
-
-    /*
-     * RECENT POSTS
-     */
-    else if (widget.type === "recent") {
-      const list = document.createElement("div");
-
-      list.className = "bm-recent-posts";
-
-      const limit = Number(widget.limit) || 5;
-
-      loadRecentPosts(list, limit);
-
-      content.appendChild(list);
-    }
-
-    /*
-     * WIDGET BELUM DIDUKUNG
-     */
-    else {
-      const note = document.createElement("p");
-
-      note.textContent =
-        "Widget \"" +
-        (widget.type || "unknown") +
-        "\" belum tersedia.";
-
-      content.appendChild(note);
-    }
-
-    box.appendChild(content);
-
-    return box;
-  }
 
   /*
-   * Mengambil artikel terbaru dari Blogger.
+   * =====================================================
+   * UTILITAS
+   * =====================================================
    */
-  function loadRecentPosts(container, limit) {
-    const callbackName =
-      "bmRecentPosts_" +
-      Date.now();
 
-    window[callbackName] = function (data) {
-      try {
-        const entries =
-          data.feed &&
-          data.feed.entry
-            ? data.feed.entry
-            : [];
+  function findWidget(widgetId) {
 
-        entries.slice(0, limit).forEach(function (entry) {
-          const item = document.createElement("div");
+    if (!widgetId) {
+      return null;
+    }
 
-          item.className = "bm-recent-post";
-
-          const link = document.createElement("a");
-
-          link.href =
-            entry.link && entry.link.length
-              ? (
-                  entry.link.find(function (x) {
-                    return x.rel === "alternate";
-                  }) || {}
-                ).href || "#"
-              : "#";
-
-          link.textContent =
-            entry.title && entry.title.$t
-              ? entry.title.$t
-              : "Untitled";
-
-          item.appendChild(link);
-
-          container.appendChild(item);
-        });
-      } finally {
-        delete window[callbackName];
-        script.remove();
-      }
-    };
-
-    const script = document.createElement("script");
-
-    script.src =
-      "/feeds/posts/default" +
-      "?alt=json-in-script" +
-      "&max-results=" +
-      encodeURIComponent(limit) +
-      "&callback=" +
-      callbackName;
-
-    script.onerror = function () {
-      container.textContent =
-        "Recent posts tidak dapat dimuat.";
-      delete window[callbackName];
-      script.remove();
-    };
-
-    document.body.appendChild(script);
+    return document.getElementById(widgetId);
   }
 
-  /*
-   * SIDEBAR MASTER
-   */
-  function renderSidebar() {
-    const sidebar = findSidebar();
 
-    if (!sidebar) {
-      console.warn(
-        "BLOGGER MASTER THEME: sidebar tidak ditemukan."
-      );
+  /*
+   * =====================================================
+   * MENCARI AREA JUDUL WIDGET
+   * =====================================================
+   */
+
+  function findWidgetTitle(widget) {
+
+    if (!widget) {
+      return null;
+    }
+
+    return (
+      widget.querySelector(".title") ||
+      widget.querySelector(".widget-title") ||
+      widget.querySelector("h2") ||
+      widget.querySelector("h3") ||
+      widget.querySelector("h4")
+    );
+  }
+
+
+  /*
+   * =====================================================
+   * MENCARI AREA ISI WIDGET
+   * =====================================================
+   */
+
+  function findWidgetContent(widget) {
+
+    if (!widget) {
+      return null;
+    }
+
+    return (
+      widget.querySelector(".widget-content") ||
+      widget.querySelector(".widget-content-inner") ||
+      widget.querySelector(".widget-inner")
+    );
+  }
+
+
+  /*
+   * =====================================================
+   * UBAH JUDUL
+   * =====================================================
+   */
+
+  function changeTitle(widget, title) {
+
+    if (!title) {
       return;
     }
 
-    const oldMaster =
-      sidebar.querySelector(
-        "[data-blogger-master-sidebar]"
-      );
+    var titleElement = findWidgetTitle(widget);
 
-    if (oldMaster) {
-      oldMaster.remove();
+    if (!titleElement) {
+      return;
     }
 
-    const settings = C.sidebar || {};
+    titleElement.textContent = title;
+  }
+
+
+  /*
+   * =====================================================
+   * UBAH ISI WIDGET
+   * =====================================================
+   */
+
+  function changeContent(widget, content) {
+
+    if (content === undefined) {
+      return;
+    }
+
+    var contentElement = findWidgetContent(widget);
+
+    if (!contentElement) {
+      console.warn(
+        "MASTER THEME: area content tidak ditemukan:",
+        widget.id
+      );
+
+      return;
+    }
+
+    contentElement.innerHTML = content;
+  }
+
+
+  /*
+   * =====================================================
+   * ATUR WIDGET
+   * =====================================================
+   */
+
+  function applyWidget(widgetId, settings) {
+
+    var widget = findWidget(widgetId);
+
+    if (!widget) {
+
+      console.warn(
+        "MASTER THEME: widget tidak ditemukan:",
+        widgetId
+      );
+
+      return;
+    }
+
+
+    /*
+     * ENABLE / DISABLE
+     */
 
     if (settings.enabled === false) {
+
+      widget.style.display = "none";
+
       return;
     }
 
-    const wrapper = document.createElement("div");
+    widget.style.display = "";
 
-    wrapper.className = "bm-master-sidebar";
 
-    wrapper.setAttribute(
-      "data-blogger-master-sidebar",
-      "true"
-    );
+    /*
+     * PRESERVE CONTENT
+     */
 
-    const widgets =
-      Array.isArray(settings.widgets)
-        ? settings.widgets
-        : [];
+    if (settings.preserveContent === true) {
+      return;
+    }
 
-    widgets.forEach(function (widget) {
-      wrapper.appendChild(
-        createWidget(widget)
+
+    /*
+     * TITLE
+     */
+
+    if (settings.title) {
+
+      changeTitle(
+        widget,
+        settings.title
       );
-    });
 
-    sidebar.insertBefore(
-      wrapper,
-      sidebar.firstChild
+    }
+
+
+    /*
+     * CONTENT
+     */
+
+    if (
+      settings.content !== undefined
+    ) {
+
+      changeContent(
+        widget,
+        settings.content
+      );
+
+    }
+
+  }
+
+
+  /*
+   * =====================================================
+   * PROSES SEMUA WIDGET
+   * =====================================================
+   */
+
+  function applyWidgets() {
+
+    var widgets =
+      CONFIG.widgets || {};
+
+    Object.keys(widgets).forEach(
+      function (widgetId) {
+
+        applyWidget(
+          widgetId,
+          widgets[widgetId]
+        );
+
+      }
     );
+
+  }
+
+
+  /*
+   * =====================================================
+   * DESAIN GLOBAL
+   * =====================================================
+   */
+
+  function applyDesign() {
+
+    var design =
+      CONFIG.design || {};
+
+    var root =
+      document.documentElement;
+
+
+    var variables = {
+
+      "--bm-primary":
+        design.primaryColor,
+
+      "--bm-text":
+        design.textColor,
+
+      "--bm-bg":
+        design.backgroundColor,
+
+      "--bm-card":
+        design.cardColor,
+
+      "--bm-border":
+        design.borderColor,
+
+      "--bm-radius":
+        design.radius,
+
+      "--bm-max":
+        design.maxWidth
+
+    };
+
+
+    Object.keys(variables).forEach(
+      function (variable) {
+
+        if (
+          variables[variable]
+        ) {
+
+          root.style.setProperty(
+            variable,
+            variables[variable]
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /*
+   * =====================================================
+   * START
+   * =====================================================
+   */
+
+  function start() {
+
+    applyDesign();
+
+    applyWidgets();
 
     console.log(
-      "BLOGGER MASTER THEME: " +
-      widgets.length +
-      " widget sidebar dimuat."
+      "BLOGGER MASTER THEME: aktif"
     );
+
   }
 
-  function init() {
-    applyDesign();
-    renderSidebar();
-  }
 
-  if (document.readyState === "loading") {
+  /*
+   * =====================================================
+   * BLOGGER KADANG MERENDER WIDGET
+   * SETELAH JAVASCRIPT DIJALANKAN.
+   *
+   * KITA COBA BEBERAPA KALI.
+   * =====================================================
+   */
+
+  var attempts = 0;
+
+  var timer =
+    setInterval(
+      function () {
+
+        attempts++;
+
+        applyWidgets();
+
+        if (attempts >= 10) {
+
+          clearInterval(timer);
+
+        }
+
+      },
+      700
+    );
+
+
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+
     document.addEventListener(
       "DOMContentLoaded",
-      init
+      start
     );
+
   } else {
-    init();
+
+    start();
+
   }
+
 
 })();

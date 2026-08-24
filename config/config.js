@@ -1,10 +1,12 @@
 window.BLOGGER_MASTER_CONFIG = {
-  version: "1.1.0",
 
-  site: {
-    name: "My Blog",
-    description: "My Blogger site"
-  },
+  version: "2.0.0",
+
+  /*
+   * =====================================================
+   * DESAIN GLOBAL
+   * =====================================================
+   */
 
   design: {
     primaryColor: "#111111",
@@ -16,67 +18,129 @@ window.BLOGGER_MASTER_CONFIG = {
     maxWidth: "1280px"
   },
 
+
   /*
-   * MENU TIDAK DIGUNAKAN OLEH MASTER THEME.
-   * Menu lama Blogger tetap dipakai.
+   * =====================================================
+   * MENU
+   *
+   * DIKOSONGKAN karena kita menggunakan menu Blogger lama.
+   * =====================================================
    */
+
   menu: [],
 
+
   /*
    * =====================================================
-   * SIDEBAR GLOBAL
-   * =====================================================
+   * WIDGET BLOGGER
    *
-   * Urutan widget di bawah ini = urutan tampil di sidebar.
+   * ID harus sama dengan ID widget di template Blogger.
+   *
+   * enabled  = tampil / tidak
+   * title    = judul widget
+   * content  = isi widget
+   * =====================================================
    */
 
-  sidebar: {
-    enabled: true,
+  widgets: {
 
-    widgets: [
+    /*
+     * Widget HTML10
+     * Contoh: banner / QR
+     */
 
-      {
-        type: "search",
-        title: "SEARCH"
-      },
+    HTML10: {
+      enabled: true,
 
-      {
-        type: "html",
-        title: "PROMO",
-        content: `
-          <div style="text-align:center;">
-            <a href="#" target="_blank">
-              <img
-                src="https://via.placeholder.com/300x250"
-                style="width:100%;height:auto;border-radius:8px;"
-              />
-            </a>
-          </div>
-        `
-      },
+      title: "MASTER",
 
-      {
-        type: "html",
-        title: "INFORMASI",
-        content: `
-          <ul>
-            <li><a href="/p/about.html">About Us</a></li>
-            <li><a href="/p/contact.html">Contact</a></li>
-            <li><a href="/p/privacy-policy.html">Privacy Policy</a></li>
-          </ul>
-        `
-      },
+      content: `
+        <div style="text-align:center;">
+          <img
+            src="https://via.placeholder.com/300x250"
+            style="width:100%;height:auto;border-radius:8px;"
+          />
+        </div>
+      `
+    },
 
-      {
-        type: "recent",
-        title: "RECENT POSTS",
-        limit: 5
-      }
 
-    ]
+    /*
+     * Widget HTML3
+     * Link alternatif
+     */
+
+    HTML3: {
+      enabled: true,
+
+      title: "LINK ALTERNATIF SLOT 10K",
+
+      content: `
+        <div style="text-align:center;">
+
+          <a
+            href="https://contoh-domain.com"
+            target="_blank"
+            rel="nofollow noopener"
+          >
+            LINK ALTERNATIF
+          </a>
+
+        </div>
+      `
+    },
+
+
+    /*
+     * Widget Followers Blogger
+     *
+     * Kita tidak mengubah isi widget ini.
+     */
+
+    Followers1: {
+      enabled: true,
+
+      preserveContent: true
+    },
+
+
+    /*
+     * Widget HTML6
+     * Facebook
+     */
+
+    HTML6: {
+      enabled: true,
+
+      title: "FACEBOOK",
+
+      content: `
+        <div style="text-align:center;">
+
+          <a
+            href="https://facebook.com/"
+            target="_blank"
+            rel="nofollow noopener"
+          >
+            Facebook
+          </a>
+
+        </div>
+      `
+    }
+
   },
 
+
+  /*
+   * =====================================================
+   * FOOTER
+   * =====================================================
+   */
+
   footer: {
-    text: "© My Blog. All rights reserved."
+    enabled: false,
+    text: "© My Blog"
   }
+
 };

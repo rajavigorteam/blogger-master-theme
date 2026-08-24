@@ -59,7 +59,7 @@ window.BLOGGER_MASTER_CONFIG = {
 
   HTML3: {
     enabled: true,
-    title: "LINK ALTERNATIF SLOT 10K",
+    title: "TEST DARI GITHUB",
     content: `
       <div style="text-align:center;">
         <a href="https://contoh-domain.com"

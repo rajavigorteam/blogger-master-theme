@@ -29,17 +29,32 @@
     });
   }
 
+  function removeTestMenu() {
+    const testMenu = document.querySelector(".bm-master-nav");
+
+    if (testMenu) {
+      testMenu.remove();
+      console.log("Blogger Master Theme: test menu removed.");
+    }
+  }
+
   function init() {
+    removeTestMenu();
     applyDesign();
 
     /*
-     * MENU BLOGGER SENGAJA TIDAK DISENTUH.
+     * MENU BLOGGER ASLI TIDAK DISENTUH.
      *
-     * Menu tetap menggunakan LinkList Blogger:
-     * #main-menu-nav
+     * Menu lama seperti:
+     * SITUS SLOT 10K
+     * DEPOSIT
+     * WITHDRAW
+     * INFORMASI
+     * ABOUT US
+     * LIVECHAT
+     * DAFTAR BLOG INDEX
      *
-     * Isi menu tetap dapat kamu atur dari Blogger
-     * seperti sebelumnya.
+     * tetap menggunakan sistem LinkList Blogger.
      */
   }
 

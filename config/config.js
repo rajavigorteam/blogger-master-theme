@@ -59,7 +59,7 @@ window.BLOGGER_MASTER_CONFIG = {
 
   HTML3: {
     enabled: true,
-    title: "TEST DARI GITHUB",
+    title: "TEST LAGI NIH",
     content: `
       <div style="text-align:center;">
         <a href="https://contoh-domain.com"

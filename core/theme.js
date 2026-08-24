@@ -1,73 +1,31 @@
 (function () {
   "use strict";
 
-  function findSidebar() {
-    return (
-      document.getElementById("sidebar1") ||
-      document.querySelector("#sidebar1") ||
-      document.querySelector(".sidebar")
-    );
-  }
+  function test() {
+    var sections = document.querySelectorAll("b\\:section");
 
-  function testSidebar() {
-    var sidebar = findSidebar();
+    console.log("MASTER THEME AKTIF");
+    console.log("Jumlah section:", sections.length);
 
-    if (!sidebar) {
-      console.warn("MASTER THEME: sidebar tidak ditemukan.");
-      return false;
-    }
+    var all = document.querySelectorAll("[id]");
 
-    if (document.querySelector("[data-master-sidebar-test]")) {
-      return true;
-    }
-
-    var box = document.createElement("div");
-
-    box.setAttribute("data-master-sidebar-test", "true");
-
-    box.style.cssText =
-      "background:#111;" +
-      "color:#fff;" +
-      "padding:20px;" +
-      "margin:15px 0;" +
-      "border-radius:8px;" +
-      "font-family:Arial,sans-serif;" +
-      "font-size:16px;" +
-      "position:relative;" +
-      "z-index:9999;";
-
-    box.innerHTML =
-      "<strong>MASTER SIDEBAR BERHASIL</strong>" +
-      "<br><span style='font-size:13px'>" +
-      "Konten ini dikirim dari GitHub." +
-      "</span>";
-
-    sidebar.insertBefore(box, sidebar.firstChild);
-
-    console.log(
-      "MASTER THEME: sidebar berhasil ditemukan.",
-      sidebar
-    );
-
-    return true;
-  }
-
-  function start() {
-    var attempts = 0;
-
-    var timer = setInterval(function () {
-      attempts++;
-
-      if (testSidebar() || attempts >= 20) {
-        clearInterval(timer);
+    all.forEach(function (el) {
+      if (
+        el.id &&
+        (
+          el.id.toLowerCase().indexOf("side") !== -1 ||
+          el.className &&
+          String(el.className).toLowerCase().indexOf("side") !== -1
+        )
+      ) {
+        console.log("Kandidat sidebar:", el);
       }
-    }, 500);
+    });
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start);
+    document.addEventListener("DOMContentLoaded", test);
   } else {
-    start();
+    test();
   }
-
 })();

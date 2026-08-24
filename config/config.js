@@ -56,10 +56,7 @@ window.BLOGGER_MASTER_CONFIG = {
 
       content: `
         <div style="text-align:center;">
-          <img
-            src="https://via.placeholder.com/300x250"
-            style="width:100%;height:auto;border-radius:8px;"
-          />
+          <a title="MASTERMPO" href="https://qoolink.co/rajavigorgames" target="blank"><img loading="lazy" src="https://i.postimg.cc/gJ6329tP/slot-qris.png" alt="online" width="100%" height="auto"></a>
         </div>
       `
     },

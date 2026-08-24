@@ -3,33 +3,62 @@ window.BLOGGER_MASTER_MENU = {
   items: [
 
     {
-      title: "HOME",
-      url: "/"
+      title: "⌂",
+      url: "/",
+      className: "home"
+    },
+
+    {
+      title: "SITUS SLOT 10K",
+      url: "#",
+      children: [
+        {
+          title: "RAJAVIGOR",
+          url: "https://jaga.link/rajavigor"
+        },
+        {
+          title: "KANTSLOT",
+          url: "https://jaga.link/kantslot"
+        },
+        {
+          title: "SLOTKAMBO",
+          url: "https://rumaslapa.com/"
+        },
+        {
+          title: "ROMAWIBET",
+          url: "https://jaga.link/romawibet"
+        }
+      ]
     },
 
     {
       title: "DEPOSIT",
-      url: "/p/deposit.html"
+      url: "#"
     },
 
     {
       title: "WITHDRAW",
-      url: "/p/withdraw.html"
+      url: "#"
     },
 
     {
       title: "INFORMASI",
-      url: "/p/informasi.html"
+      url: "#"
     },
 
     {
       title: "ABOUT US",
-      url: "/p/about-us.html"
+      url: "#"
+    },
+
+    {
+      title: "LIVECHAT",
+      url: "#"
     },
 
     {
       title: "DAFTAR BLOG INDEX",
-      url: "/p/blog-index.html"
+      url: "#"
     }
 
   ]

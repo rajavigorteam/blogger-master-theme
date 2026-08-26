@@ -53,6 +53,7 @@ window.BLOGGER_MASTER_WIDGETS = {
         <h2>Blogroll</h2>
 <ul class="wp-block-categories-list wp-block-categories">
 <li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://www.louxingyun2026.xyz/">www.louxingyun2026.xyz</a></li>
+<li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://columbiaconferencejgh.org/">TOTO</a></li>
 </ul>
 
       </div>

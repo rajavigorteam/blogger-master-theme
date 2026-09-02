@@ -40,7 +40,7 @@ window.BLOGGER_MASTER_WIDGETS = {
 
         <h2>LINK ALTERNATIF SLOT 10K</h2>
 <ul class="wp-block-categories-list wp-block-categories">
-<li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://jaga.link/rajavigor">RAJAVIGOR</a></li>
+<li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://3rajavigor.com/">RAJAVIGOR</a></li>
 <li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://jaga.link/kantinslot">KANTINSLOT</a></li>
 <li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://jaga.link/slotkamboja">SLOTKAMBOJA</a></li>
 <li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://jaga.link/romawibet">ROMAWIBET</a></li>

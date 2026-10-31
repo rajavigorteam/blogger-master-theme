@@ -56,6 +56,8 @@ window.BLOGGER_MASTER_WIDGETS = {
 <li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://www.louxingyun2026.xyz/">www.louxingyun2026.xyz</a></li>
 <li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://columbiaconferencejgh.org/">Toto Thailand</a></li>
 <li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://master-eeet.fr/">Slot Gacor 24 Jam</a></li>
+<li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://alexisbaru.com/">alexisbaru.com</a></li>
+<li><img loading="lazy" src="https://www.forest.go.th/tak4/wp-content/uploads/sites/41/2019/09/new-gif-icon-14.gif" width="25" height="10"><a href="https://www.adailymiscellany.com/">www.adailymiscellany.com</a></li>
 </ul>
 
       </div>
